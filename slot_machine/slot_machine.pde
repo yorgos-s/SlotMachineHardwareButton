@@ -1,3 +1,4 @@
+ //<>// //<>//
 
 import ddf.minim.*;
 Minim minim;
@@ -31,7 +32,7 @@ int side_or_middle;
 //side_or_middle determines which form the two positions I will choose
 
 
-//String[] vid_name_el = new String[146]; //<>//
+//String[] vid_name_el = new String[146];
 boolean start_SM;
 int timer_SM;
 
@@ -154,8 +155,9 @@ int[] historyWin = {0,0, 0,0, 0,0, 0,3, //10
 
 void setup() {
  
-  fullScreen();
- //size(1280,720);
+  //fullScreen();
+  //size(400,400);
+ size(1280,720);
  frameRate(25);
  
  LuckyCounter=int(random(randomStart));
@@ -361,7 +363,7 @@ background(0);
      }
      
     image(imgA1, 150, cylA1+160);
-    image(imgA2, 150, cylA2+160); //<>//
+    image(imgA2, 150, cylA2+160);
     
     
          /*
@@ -529,19 +531,11 @@ background(0);
 
 
 void keyPressed() {  
-
-    
-
-    
-
-} // END
-
-void oscEvent(OscMessage theOscMessage) {
-    arcadeValue = theOscMessage.get(0).floatValue();
+   
     //println(" value: "+arcadeValue); 
     
-     if (arcadeValue>0){    //key==' '
-      //print("JJJJJJJJJJJJJJJJJJJJJJJ");
+     if (key==' '){    //key==' '
+      print("JJJJJJJJJJJJJJJJJJJJJJJ");
       slotM.trigger();
       rnd_sides=int(random(nrPictRnd));
       rnd_middle=int(random(nrPictRnd));
@@ -560,9 +554,33 @@ void oscEvent(OscMessage theOscMessage) {
     //println("LC"+LuckyCounter);
     
     //print(historyWin[LuckyCounter]);
-  
-  
-}
+   }
+    
+} // END
 
-
+void oscEvent(OscMessage theOscMessage) {
+    arcadeValue = theOscMessage.get(0).floatValue();
+    //println(" value: "+arcadeValue); 
+    
+     if (arcadeValue>0){    //key==' '
+      print("JJJJJJJJJJJJJJJJJJJJJJJ");
+      slotM.trigger();
+      rnd_sides=int(random(nrPictRnd));
+      rnd_middle=int(random(nrPictRnd));
+      
+      start_SM = true;
+      timer_SM =0;
+      
+      side_or_middle=int(random(2));
+      
+      
+    LuckyCounter+=1;
+    LuckyCounter%=390; //399
+    
+    println(LuckyCounter);
+    
+    //println("LC"+LuckyCounter);
+    
+    //print(historyWin[LuckyCounter]);
+   }
 }
